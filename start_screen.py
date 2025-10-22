@@ -15,7 +15,13 @@ class StartScreen:
         self.logo_x, self.logo_y, self.logo_w, self.logo_h = 0, 410, 300, 140
 
     def handle_events(self):
-        pass
+        events = get_events()
+        for q in events:
+            if q.type == SDL_QUIT:
+                self.running = False
+            elif q.type == SDL_KEYDOWN and q.key == SDLK_RETURN:
+                self.running = False
+
 
     def update(self):
         pass
