@@ -27,6 +27,19 @@ class SelectScreen:
         self.select_sheet.clip_draw(0, 495, 110, 125, 500, 450, 200, 250)  # Ryu
         self.select_sheet.clip_draw(0, 370, 110, 125, 700, 450, 200, 250)  # Ken
 
+        if self.p1_selected_index == 0:  # Ryu
+            self.select_sheet.clip_draw(0, 495, 110, 125, 200, 450, 300, 350)
+        else:  # Ken
+            self.select_sheet.clip_draw(0, 370, 110, 125, 200, 450, 300, 350)
+
+            # 2P의 현재 선택 인덱스로 오른쪽 캐릭터 표시
+        if self.p2_selected_index == 0:  # Ryu
+            self.select_sheet.clip_composite_draw(0, 500, 110, 125, 0, 'h', 1025, 450, 300, 350)
+            self.select_sheet.clip_draw(0, 495, 110, 25, 1000, 300, 300, 70)
+        else:  # Ken
+            self.select_sheet.clip_composite_draw(0, 370, 110, 125, 0, 'h', 1025, 450, 300, 350)
+            self.select_sheet.clip_draw(0, 370, 110, 25, 1000, 300, 300, 70)
+
         update_canvas()
 
     def run(self):
