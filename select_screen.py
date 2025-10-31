@@ -8,7 +8,8 @@ class SelectScreen:
         self.blink_timer = 0
         self.p1_selected_index = 0
         self.p2_selected_index = 1
-
+        self.character_positions = [(500, 500), (700, 500)]
+        self.font = load_font('C:/Windows/Fonts/ARLRDBD.TTF', 40)
 
     def handle_events(self):
         pass
