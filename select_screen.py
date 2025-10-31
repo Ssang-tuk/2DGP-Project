@@ -13,7 +13,7 @@ class SelectScreen:
 
     def draw(self):
         clear_canvas()
-        
+
 
         update_canvas()
 
