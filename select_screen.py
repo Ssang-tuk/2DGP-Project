@@ -15,7 +15,8 @@ class SelectScreen:
 
 
     def update(self):
-        pass
+        self.blink_timer += 1
+
 
     def draw(self):
         clear_canvas()
@@ -39,6 +40,21 @@ class SelectScreen:
         else:  # Ken
             self.select_sheet.clip_composite_draw(0, 370, 110, 125, 0, 'h', 1025, 450, 300, 350)
             self.select_sheet.clip_draw(0, 370, 110, 25, 1000, 300, 300, 70)
+
+        if (self.blink_timer // 20) % 2 == 0:
+            x1, y1 = self.character_positions[self.p1_selected_index]
+            x2, y2 = self.character_positions[self.p2_selected_index]
+
+            # 사각형 테두리
+            draw_rectangle(x1 - 80, y1 - 170, x1 + 110, y1 + 70, 255, 0, 0)
+            draw_rectangle(x2 - 80, y2 - 170, x2 + 110, y2 + 70, 0, 0, 255)
+
+            # "1P" / "2P" 텍스트
+            self.font.draw(x1 - 30, y1 + 110, "1P", (255, 0, 0))
+            self.font.draw(x2 + 10, y2 + 110, "2P", (0, 0, 255))
+
+        if (self.blink_timer // 30) % 2 == 0:
+            self.font_sheet.clip_draw(420, 200, 296, 224, 650, 200, 300, 100)
 
         update_canvas()
 
