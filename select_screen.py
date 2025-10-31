@@ -18,4 +18,9 @@ class SelectScreen:
         update_canvas()
 
     def run(self):
-        pass
+        while self.running:
+            self.handle_events()
+            self.update()
+            self.draw()
+            delay(0.03)
+
