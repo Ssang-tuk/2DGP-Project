@@ -12,8 +12,24 @@ class SelectScreen:
         self.font = load_font('C:/Windows/Fonts/ARLRDBD.TTF', 40)
 
     def handle_events(self):
-        pass
-
+        events = get_events()
+        for e in events:
+            if e.type == SDL_QUIT:
+                self.running = False
+            elif e.type == SDL_KEYDOWN:
+                if e.key == SDLK_ESCAPE:
+                    self.running = False
+                elif e.key == SDLK_RETURN:
+                    print(f"1P 선택: {self.p1_selected_index}, 2P 선택: {self.p2_selected_index}")
+                    self.running = False
+                elif e.key == SDLK_a:
+                    self.p1_selected_index = (self.p1_selected_index - 1) % 2
+                elif e.key == SDLK_d:
+                    self.p1_selected_index = (self.p1_selected_index + 1) % 2
+                elif e.key == SDLK_LEFT:
+                    self.p2_selected_index = (self.p2_selected_index - 1) % 2
+                elif e.key == SDLK_RIGHT:
+                    self.p2_selected_index = (self.p2_selected_index + 1) % 2
 
     def update(self):
         self.blink_timer += 1
