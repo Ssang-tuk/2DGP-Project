@@ -20,5 +20,9 @@ class FightScreen:
         update_canvas()
 
     def run(self):
-
+        while self.running:
+            self.handle_events()
+            self.update()
+            self.draw()
+            delay(0.03)
         close_canvas()
