@@ -2,7 +2,14 @@ from pico2d import *
 
 class FightScreen:
     def __init__(self):
-        pass
+        self.font_sheet = load_image('Street Fighter/Font.png')
+        self.stage_1 = load_image('Street Fighter/Stage_1.png')
+        self.stage_1_T = load_image('Street Fighter/Stage_1_T.png')
+
+
+
+
+
 
     def handle_events(self):
         events = get_events()
