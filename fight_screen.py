@@ -7,7 +7,7 @@ class FightScreen:
         self.stage_1_T = load_image('Street Fighter/Stage_1_T.png')
 
 
-
+        self.running = True
 
 
 
