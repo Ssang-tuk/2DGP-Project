@@ -21,8 +21,9 @@ class FightScreen:
     def draw(self):
         clear_canvas()
 
-
-
+        self.stage_1.clip_draw(10, 150, 770, 210, 600, 350, 1220, 500)
+        self.stage_1_T.clip_draw(10, 380, 1020, 170, 600, 150, 1200, 300)
+        self.stage_1.clip_draw(10, 560, 770, 54, 600, 680, 1220, 250)
 
         update_canvas()
 
