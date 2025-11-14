@@ -86,4 +86,5 @@ class SelectScreen:
             self.update()
             self.draw()
             delay(0.03)
-        return self.next_scene
+        return self.next_scene, self.p1_selected_index, self.p2_selected_index
+
