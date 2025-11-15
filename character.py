@@ -35,7 +35,46 @@ class Character:
 
     def handle_action(self, action):
 
-        pass
+        if action == "MOVE_FORWARD":
+            self.vx = +5 if self.flip else -5
+            self.state = "WALK_FORWARD"
+
+        elif action == "MOVE_BACKWARD":
+            self.vx = -5 if self.flip else +5
+            self.state = "WALK_BACKWARD"
+
+        elif action == "STOP":
+            self.vx = 0
+            self.state = "IDLE"
+
+        elif action == "PUNCH":
+            if self.state == "CROUCH":
+                self.state = "CROUCH_PUNCH"
+            else:
+                self.state = "PUNCH"
+            self.frame = 0
+
+        elif action == "KICK":
+            if self.state == "CROUCH":
+                self.state = "CROUCH_KICK"
+            else:
+                self.state = "KICK"
+            self.frame = 0
+
+        elif action == "JUMP":
+            self.state = "JUMP"
+            self.frame = 0
+            self.ftimer = 0
+            self.vy = self.jump_force
+
+        elif action == "CROUCH":
+            self.state = "CROUCH"
+            self.frame = 0
+
+        elif action == "CROUCH_RELEASE":
+            if self.state == "CROUCH":
+                self.state = "IDLE"
+                self.frame = 0
 
     def update(self):
 
