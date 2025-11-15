@@ -128,7 +128,7 @@ class Character:
         if not frames:
             return
 
-        # 프레임 모션이 반복되지 않는것 
+        # 프레임 모션이 반복되지 않는것
 
         if self.state in ("JUMP", "CROUCH",
                           "PUNCH", "KICK",
@@ -160,7 +160,16 @@ class Character:
 
     def get_current_frames(self):
 
-        pass
+        if self.state == "IDLE": return self.idle_frames
+        if self.state == "WALK_FORWARD": return self.walk_forward_frames
+        if self.state == "WALK_BACKWARD": return self.walk_backward_frames
+        if self.state == "PUNCH": return self.punch_frames
+        if self.state == "KICK": return self.kick_frames
+        if self.state == "JUMP": return self.jump_frames
+        if self.state == "CROUCH": return self.crouch_frames
+        if self.state == "CROUCH_PUNCH": return self.crouch_punch_frames
+        if self.state == "CROUCH_KICK": return self.crouch_kick_frames
+        return self.idle_frames
 
     # ============================================================
     def draw(self):
