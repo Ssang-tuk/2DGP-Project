@@ -173,5 +173,30 @@ class Character:
 
     # ============================================================
     def draw(self):
+        frames = self.get_current_frames()
+        if not frames:
+            return
 
-         pass
+        if self.frame >= len(frames):
+            self.frame = len(frames) - 1
+
+        fx, fy, fw, fh = frames[self.frame]
+
+        draw_x = self.x
+        draw_y = self.y
+
+        if self.flip:
+
+            self.sheet.clip_composite_draw(
+                fx, fy, fw, fh,
+                0, 'h',
+                draw_x, draw_y,
+                fw * 2, fh * 2
+            )
+        else:
+
+            self.sheet.clip_draw(
+                fx, fy, fw, fh,
+                draw_x, draw_y,
+                fw * 2, fh * 2
+            )
