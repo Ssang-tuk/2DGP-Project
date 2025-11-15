@@ -101,8 +101,8 @@ class Character:
 
     def update(self):
 
+        self.x += self.vx
 
-        pass
 
     def get_current_frames(self):
 
