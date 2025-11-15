@@ -103,6 +103,30 @@ class Character:
 
         self.x += self.vx
 
+        # 점프 처리
+        if self.state == "JUMP":
+            self.y += self.vy
+            self.vy -= self.gravity
+
+            if self.y <= self.ground_y:
+                self.y = self.ground_y
+                self.vy = 0
+                self.state = "IDLE"
+                self.frame = 0
+
+            # 프레임 속도
+        speed = 3 if self.state == "JUMP" else 6
+
+        self.ftimer += 1
+        if self.ftimer >= speed:
+            self.ftimer = 0
+            self.frame += 1
+
+        frames = self.get_current_frames()
+
+        # 안전장치
+        if not frames:
+            return
 
     def get_current_frames(self):
 
