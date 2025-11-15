@@ -128,6 +128,36 @@ class Character:
         if not frames:
             return
 
+        # 프레임 모션이 반복되지 않는것 
+
+        if self.state in ("JUMP", "CROUCH",
+                          "PUNCH", "KICK",
+                          "CROUCH_PUNCH", "CROUCH_KICK"):
+
+            if self.frame >= len(frames):
+
+                # CROUCH 유지 (마지막 프레임 고정)
+                if self.state == "CROUCH":
+                    self.frame = len(frames) - 1
+
+                # crouch 공격 → crouch로 복귀
+                elif self.state in ("CROUCH_PUNCH", "CROUCH_KICK"):
+                    self.state = "CROUCH"
+                    self.frame = len(self.crouch_frames) - 1
+
+                # standing 공격 → idle로 복귀
+                elif self.state in ("PUNCH", "KICK"):
+                    self.state = "IDLE"
+                    self.frame = 0
+
+                # 점프는 착지에서 처리됨
+                else:
+                    self.frame = len(frames) - 1
+
+            # 반복되는 모션들
+        else:
+            self.frame %= len(frames)
+
     def get_current_frames(self):
 
         pass
