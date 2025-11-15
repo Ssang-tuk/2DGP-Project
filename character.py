@@ -35,6 +35,29 @@ class Character:
 
     def handle_action(self, action):
 
+        if self.state == "JUMP":
+
+            # 공중 좌/우 이동 허용
+            if action == "MOVE_FORWARD":
+                self.vx = +5 if self.flip else -5
+                return
+
+            if action == "MOVE_BACKWARD":
+                self.vx = -5 if self.flip else +5
+                return
+
+            if action == "STOP":
+                self.vx = 0
+                return
+
+            # 공중에서 숙이기 불가
+            if action in ("CROUCH", "CROUCH_RELEASE"):
+                return
+
+            return
+
+        # == 지상 처리 ==
+
         if action == "MOVE_FORWARD":
             self.vx = +5 if self.flip else -5
             self.state = "WALK_FORWARD"
