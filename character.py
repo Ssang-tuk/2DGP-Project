@@ -22,6 +22,8 @@ class Character:
         self.jump_force = 14
         self.gravity = 1
 
+        self.hit_timer = 0
+
         # 프레임 리스트
         self.idle_frames = []
         self.walk_forward_frames = []
@@ -32,6 +34,18 @@ class Character:
         self.crouch_frames = []
         self.crouch_punch_frames = []
         self.crouch_kick_frames = []
+        self.hit_light_frames = []
+        self.hit_heavy_frames = []
+        self.hit_low_frames = []
+        self.hit_sweep_frames = []
+
+        self.air_hit_frames = []  # 공중 피격
+        self.getup_frames = []  # 일어나기
+
+        self.death_frames = []
+
+        self.has_hit = False
+
 
     def handle_action(self, action):
 
