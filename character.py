@@ -185,8 +185,12 @@ class Character:
         draw_x = self.x
         draw_y = self.y
 
-        if self.flip:
+        if self.state == "CROUCH_PUNCH" or self.state == "CROUCH_KICK":
+            draw_y -= 33
 
+        if self.flip:
+            if self.state == "CROUCH_PUNCH" or self.state == "CROUCH_KICK" or self.state == "PUNCH":
+                draw_x += 20
             self.sheet.clip_composite_draw(
                 fx, fy, fw, fh,
                 0, 'h',
@@ -194,9 +198,11 @@ class Character:
                 fw * 2, fh * 2
             )
         else:
-
+            if self.state == "CROUCH_PUNCH" or self.state == "CROUCH_KICK" or self.state == "PUNCH":
+                draw_x -= 20
             self.sheet.clip_draw(
                 fx, fy, fw, fh,
                 draw_x, draw_y,
                 fw * 2, fh * 2
             )
+
