@@ -113,6 +113,7 @@ class Character:
                 self.state = "IDLE"
                 self.frame = 0
 
+
     def update(self):
 
         self.x += self.vx
@@ -183,7 +184,19 @@ class Character:
         if self.state == "CROUCH": return self.crouch_frames
         if self.state == "CROUCH_PUNCH": return self.crouch_punch_frames
         if self.state == "CROUCH_KICK": return self.crouch_kick_frames
+
+        if self.state == "HIT_LIGHT": return self.hit_light_frames
+        if self.state == "HIT_HEAVY": return self.hit_heavy_frames
+        if self.state == "HIT_LOW": return self.hit_low_frames
+        if self.state == "HIT_SWEEP": return self.hit_sweep_frames
+
+        if self.state == "AIR_HIT": return self.air_hit_frames
+        if self.state == "GETUP": return self.getup_frames
+
+        if self.state == "DEAD": return self.death_frames
+
         return self.idle_frames
+
 
     # ============================================================
     def draw(self):
