@@ -17,3 +17,8 @@ class Ryu(Character):
         self.crouch_punch_frames = [(1, 9662, 111, 62), (114, 9662, 111, 62), (227, 9662, 111, 62)]
         self.crouch_kick_frames = [(1, 8757, 159, 62), (162, 8757, 159, 62)]
 
+        self.hit_light_frames = []
+        self.hit_heavy_frames = []
+        self.hit_low_frames = []
+        self.hit_sweep_frames = []
+

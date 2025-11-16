@@ -16,3 +16,8 @@ class Ken(Character):
         self.crouch_frames = [(1, 10452, 79, 94), (82, 10452, 79, 94), (163, 10452, 79, 94)]
         self.crouch_punch_frames = [(1, 9207, 111, 62), (114, 9207, 111, 62), (227, 9207, 111, 62)]
         self.crouch_kick_frames = [(1, 8237, 159, 62), (162, 8237, 159, 62)]
+
+        self.hit_light_frames = []
+        self.hit_heavy_frames = []
+        self.hit_low_frames = []
+        self.hit_sweep_frames = []
