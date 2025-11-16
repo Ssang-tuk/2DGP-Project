@@ -22,3 +22,9 @@ class Ryu(Character):
         self.hit_low_frames = []
         self.hit_sweep_frames = []
 
+        self.air_hit_frames = []  # 공중 피격
+        self.getup_frames = []  # 일어나기
+
+        self.death_frames = []
+
+
