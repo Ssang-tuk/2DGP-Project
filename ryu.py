@@ -17,14 +17,15 @@ class Ryu(Character):
         self.crouch_punch_frames = [(1, 9662, 111, 62), (114, 9662, 111, 62), (227, 9662, 111, 62)]
         self.crouch_kick_frames = [(1, 8757, 159, 62), (162, 8757, 159, 62)]
 
-        self.hit_light_frames = []
-        self.hit_heavy_frames = []
-        self.hit_low_frames = []
-        self.hit_sweep_frames = []
+        self.hit_light_frames = [(98, 7528, 94, 94), (292, 7528, 94, 94)]
+        self.hit_heavy_frames = [(98, 7431, 94, 94), (292, 7431, 94, 94)]
+        self.hit_low_frames = [(98, 7350, 94, 79), (194, 7350, 94, 79)]
+        self.hit_sweep_frames = [(98, 7350, 94, 79), (194, 7350, 94, 79)]
 
-        self.air_hit_frames = []  # 공중 피격
-        self.getup_frames = []  # 일어나기
+        self.air_hit_frames = [(1, 7043, 127, 95), (130, 7043, 127, 95), (259, 7043, 127, 95), (388, 7043, 127, 95)]  # 공중 피격
+        self.getup_frames = [(1, 6834, 111, 126), (114, 6834, 111, 126), (227, 6834, 111, 126), (340, 6834, 111, 126)]  # 일어나기
 
-        self.death_frames = []
+        self.death_frames = [(1, 6962, 127, 79), (130, 6962, 127, 79), (259, 6962, 127, 79), (388, 6962, 127, 79), (517, 6962, 127, 79)]
+
 
 
