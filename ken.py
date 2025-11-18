@@ -17,12 +17,12 @@ class Ken(Character):
         self.crouch_punch_frames = [(1, 9207, 111, 62), (114, 9207, 111, 62), (227, 9207, 111, 62)]
         self.crouch_kick_frames = [(1, 8237, 159, 62), (162, 8237, 159, 62)]
 
-        self.hit_light_frames = []
-        self.hit_heavy_frames = []
-        self.hit_low_frames = []
-        self.hit_sweep_frames = []
+        self.hit_light_frames = [(98, 7007, 94, 94), (292, 7007, 94, 94)]
+        self.hit_heavy_frames = [(98, 6910, 94, 94), (292, 6910, 94, 94)]
+        self.hit_low_frames = [(82, 6829, 78, 79), (164, 6829, 78, 79)]
+        self.hit_sweep_frames = [(82, 6829, 78, 79), (164, 6829, 78, 79)]
 
-        self.air_hit_frames = []  # 공중 피격
-        self.getup_frames = []  # 일어나기
+        self.air_hit_frames = [(1, 6522, 127, 95), (130, 6522, 127, 95), (259, 6522, 127, 95), (388, 6522, 127, 95)]  # 공중 피격
+        self.getup_frames = [(1, 6312, 111, 126), (114, 6312, 111, 126), (227, 6312, 111, 126), (340, 6312, 111, 126)]  # 일어나기
 
-        self.death_frames = []
+        self.death_frames = [(1, 6441, 127, 79), (130, 6441, 127, 79), (259, 6441, 127, 79), (388, 6441, 127, 79)]
