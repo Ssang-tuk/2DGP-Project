@@ -240,3 +240,38 @@ class Character:
                 fw * 2, fh * 2
             )
 
+    def get_hitbox(self):
+        frames = self.get_current_frames()
+        if not frames:
+            return None
+
+        fx, fy, fw, fh = frames[self.frame]
+
+        w = fw * 2
+        h = fh * 2
+
+        # 기본 hitbox
+        left = self.x - (w // 2)
+        right = self.x + (w // 2)
+        bottom = self.y - (h // 2)
+        top = self.y + (h // 2)
+
+        # ============================
+        # 상태별 높이 및 위치 수정
+        # ============================
+
+        if self.state == "CROUCH":
+            top -= 70
+            left += 10
+            right -= 10
+
+        elif self.state in ("CROUCH_PUNCH", "CROUCH_KICK"):
+            bottom -= 30
+            top -= 30
+
+        elif self.state in ("JUMP"):
+            bottom += 20
+
+        return (left, bottom, right, top)
+
+
