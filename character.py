@@ -197,8 +197,6 @@ class Character:
 
         return self.idle_frames
 
-
-    # ============================================================
     def draw(self):
         frames = self.get_current_frames()
         if not frames:
@@ -214,6 +212,15 @@ class Character:
 
         if self.state == "CROUCH_PUNCH" or self.state == "CROUCH_KICK":
             draw_y -= 33
+
+        if self.state == "HIT_LOW" or self.state == "HIT_SWEEP":
+            draw_y -= 40
+
+        if self.state == "GETUP" or self.state == "AIR_HIT":
+            draw_y += 20
+
+        if self.state == "DEAD":
+            draw_y -= 20
 
         if self.flip:
             if self.state == "CROUCH_PUNCH" or self.state == "CROUCH_KICK" or self.state == "PUNCH":
