@@ -274,6 +274,15 @@ class Character:
 
         return (left, bottom, right, top)
 
+    def debug_draw(self):
+        hb = self.get_hitbox()
+        if hb:
+            draw_rectangle(hb[0], hb[1], hb[2], hb[3])  # 초록색
+
+        atk = self.get_attack_box()
+        if atk:
+            draw_rectangle(atk[0], atk[1], atk[2], atk[3], 255, 0, 0)  # 빨강
+
     def get_attack_box(self):
         frames = self.get_current_frames()
         if not frames:
