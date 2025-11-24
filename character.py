@@ -344,6 +344,46 @@ class Character:
 
         return (left, bottom, right, top)
 
+    def take_hit(self, attack_type):
+        # 이미 피격 중이면 추가 피격 무시
+        if getattr(self, "is_hit", False):
+            return
+
+        self.is_hit = True
+        self.frame = 0
+        self.ftimer = 0
+
+        # 공중 피격
+        if self.state == "JUMP":
+            self.state = "AIR_HIT"
+            self.vy = -5
+            self.vx = -4 if self.flip else 4
+            self.hit_timer = 999  # 타이머 대신 착지 조건으로 끝남
+            return
+
+        # 피격 애니메이션 선택
+        if attack_type == "PUNCH":
+            self.state = "HIT_LIGHT"
+
+        elif attack_type == "KICK":
+            self.state = "HIT_HEAVY"
+
+        elif attack_type == "CROUCH_PUNCH":
+            self.state = "HIT_LOW"
+
+        elif attack_type == "CROUCH_KICK":
+            self.state = "HIT_SWEEP"  # 넘어짐 모션 가능
+
+        # 넉백 (flip 방향 반대로 밀리게)
+        if self.flip:
+            self.vx = -3
+        else:
+            self.vx = 3
+
+        # 피격 유지 시간 (프레임 수)
+        self.hit_timer = 20
+
+
 
 
 
