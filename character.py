@@ -383,7 +383,13 @@ class Character:
         # 피격 유지 시간 (프레임 수)
         self.hit_timer = 20
 
-
+    def die(self):
+        self.state = "DEAD"
+        self.vx = 0
+        self.vy = 0
+        self.frame = 0
+        self.ftimer = 0
+        self.is_hit = False
 
 
 
