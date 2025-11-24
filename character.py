@@ -274,4 +274,67 @@ class Character:
 
         return (left, bottom, right, top)
 
+    def get_attack_box(self):
+        frames = self.get_current_frames()
+        if not frames:
+            return None
+
+        # 공격 상태가 아니면 없음
+        if self.state not in ("PUNCH", "KICK", "CROUCH_PUNCH", "CROUCH_KICK"):
+            return None
+
+        fx, fy, fw, fh = frames[self.frame]
+
+        w = fw * 2
+        h = fh * 2
+
+        # =========================================
+        # 기본 박스 (hurtbox 동일 방식: sprite 기준)
+        # =========================================
+        left = self.x - (w // 2)
+        right = self.x + (w // 2)
+        bottom = self.y - (h // 2)
+        top = self.y + (h // 2)
+
+        # =========================================
+        # 상태별 공격 판정 수정
+        # (여기서 left/right/top/bottom 직접 조정)
+        # =========================================
+
+        if self.state == "PUNCH":
+            left += 40
+            right += 5
+            bottom += 125
+            top -= 30
+
+        elif self.state == "KICK":
+            left += 70
+            right -= 10
+            bottom += 125
+
+
+        elif self.state == "CROUCH_PUNCH":
+            left += 50
+            right += 10
+            bottom += 50
+            top -= 55
+
+        elif self.state == "CROUCH_KICK":
+            left += 110
+            right += 5
+            bottom -= 30
+            top -= 120
+
+        # =========================================
+        # flip 방향 반전 처리
+        # =========================================
+        if not self.flip:  # 오른쪽 바라볼 때 좌우 반전 필요
+            width = right - left
+            left = self.x - (left - self.x) - width
+            right = left + width
+
+        return (left, bottom, right, top)
+
+
+
 
