@@ -7,6 +7,8 @@ class FightScreen:
         self.font_sheet = load_image('Street Fighter/Font.png')
         self.stage_1 = load_image('Street Fighter/Stage_1.png')
         self.stage_1_T = load_image('Street Fighter/Stage_1_T.png')
+        self.fight_img = load_image("Street Fighter/Fight.png")
+        self.ko_img = load_image("Street Fighter/KO.png")
 
         self.running = True
 
