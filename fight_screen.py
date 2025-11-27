@@ -22,6 +22,11 @@ class FightScreen:
         self.hp_bar_full = self.font_sheet
         self.hp_bar_fill = self.font_sheet
 
+        self.hp_full_clip = (13, 209, 327, 15)
+        self.hp_fill_clip = (13, 193, 327, 15)
+
+        self.hp_half = self.hp_full_clip[2] // 2
+
         character_classes = [Ryu, Ken]
 
         # 스프라이트는 기본 왼쪽 시선 이므로  P1만 flip(True)
