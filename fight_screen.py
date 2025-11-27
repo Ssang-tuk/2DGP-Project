@@ -43,6 +43,9 @@ class FightScreen:
 
             if e.type == SDL_KEYDOWN:
 
+                p1_locked = self.p1.state in ("AIR_HIT", "GETUP", "HIT_LIGHT", "HIT_HEAVY", "HIT_LOW", "HIT_SWEEP")
+                p2_locked = self.p2.state in ("AIR_HIT", "GETUP", "HIT_LIGHT", "HIT_HEAVY", "HIT_LOW", "HIT_SWEEP")
+
                 # ------------------------------
                 #   P1 입력 (WASD + 4,5)
                 # ------------------------------
