@@ -9,6 +9,9 @@ class FightScreen:
         self.stage_1_T = load_image('Street Fighter/Stage_1_T.png')
         self.fight_img = load_image("Street Fighter/Fight.png")
         self.ko_img = load_image("Street Fighter/KO.png")
+        self.show_ko = False
+        self.show_fight = True
+        self.fight_timer = 1.0
 
         self.running = True
 
