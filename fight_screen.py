@@ -131,6 +131,20 @@ class FightScreen:
             self.p1_hp = max(0, self.p1_hp - 10)
             print(f"P2 HIT! ({self.p2.state})  → P1 HP: {self.p1_hp}")
 
+        if self.p1_hp <= 0 and self.p1.state != "DEAD":
+            self.p1_hp = 0
+            self.p1.die()
+            print("P1 KO!")
+
+        if self.p2_hp <= 0 and self.p2.state != "DEAD":
+            self.p2_hp = 0
+            self.p2.die()
+            print("P2 KO!")
+
+        if self.p1_hp <= 0 or self.p2_hp <= 0:
+            self.show_ko = True
+            return
+
     # =========================================================
     def draw(self):
         clear_canvas()
