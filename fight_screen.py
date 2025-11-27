@@ -2,6 +2,11 @@ from pico2d import *
 from ryu import Ryu
 from ken import Ken
 
+def box_intersects(a, b):
+    if not a or not b:
+        return False
+    return not (a[2] < b[0] or a[0] > b[2] or a[3] < b[1] or a[1] > b[3])
+
 class FightScreen:
     def __init__(self, p1_index, p2_index):
         self.font_sheet = load_image('Street Fighter/Font.png')
@@ -109,6 +114,22 @@ class FightScreen:
 
         p2_atk = self.p2.get_attack_box()
         p1_body = self.p1.get_hitbox()
+
+        # P1 hits P2?
+        if p1_atk and not self.p1.has_hit and box_intersects(p1_atk, p2_body):
+            self.p2.take_hit(self.p1.state)  # 공격 종류 전달
+            self.p1.has_hit = True
+
+            self.p2_hp = max(0, self.p2_hp - 10)
+            print(f"P1 HIT! ({self.p1.state})  → P2 HP: {self.p2_hp}")
+
+        # P2 hits P1?
+        if p2_atk and not self.p2.has_hit and box_intersects(p2_atk, p1_body):
+            self.p1.take_hit(self.p2.state)
+            self.p2.has_hit = True
+
+            self.p1_hp = max(0, self.p1_hp - 10)
+            print(f"P2 HIT! ({self.p2.state})  → P1 HP: {self.p1_hp}")
 
     # =========================================================
     def draw(self):
