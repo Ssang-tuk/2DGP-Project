@@ -158,6 +158,9 @@ class FightScreen:
 
         self.p1.draw()
         self.p2.draw()
+        self.p1.debug_draw()
+        self.p2.debug_draw()
+
         update_canvas()
 
     # =========================================================
