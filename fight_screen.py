@@ -104,6 +104,12 @@ class FightScreen:
                 self.show_fight = False
             return
 
+        p1_atk = self.p1.get_attack_box()
+        p2_body = self.p2.get_hitbox()
+
+        p2_atk = self.p2.get_attack_box()
+        p1_body = self.p1.get_hitbox()
+
     # =========================================================
     def draw(self):
         clear_canvas()
