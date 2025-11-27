@@ -98,6 +98,12 @@ class FightScreen:
         self.p1.update()
         self.p2.update()
 
+        if self.show_fight:
+            self.fight_timer -= 0.02  # delay(0.02) 맞춰서 감소
+            if self.fight_timer <= 0:
+                self.show_fight = False
+            return
+
     # =========================================================
     def draw(self):
         clear_canvas()
