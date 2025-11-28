@@ -1,3 +1,6 @@
+character.py
+
+
 from pico2d import *
 
 class Character:
@@ -45,7 +48,6 @@ class Character:
         self.death_frames = []
 
         self.has_hit = False
-
 
     def handle_action(self, action):
 
@@ -113,8 +115,65 @@ class Character:
                 self.state = "IDLE"
                 self.frame = 0
 
-
     def update(self):
+
+        if self.state == "DEAD":
+            # 마지막 프레임에서 고정
+            if self.frame < len(self.death_frames) - 1:
+                self.ftimer += 1
+                if self.ftimer >= 6:
+                    self.ftimer = 0
+                    self.frame += 1
+            return
+
+        if self.state == "AIR_HIT":
+            self.vy -= self.gravity
+            self.y += self.vy
+            self.x += self.vx * 0.7
+
+            # 프레임 진행
+            self.ftimer += 1
+            if self.ftimer >= 5:
+                self.ftimer = 0
+                self.frame = min(self.frame + 1, len(self.air_hit_frames) - 1)
+
+            # 바닥에 닿으면 GETUP으로 이동
+            if self.y <= self.ground_y:
+                self.y = self.ground_y
+                self.vy = 0
+                self.vx = 0
+                self.state = "GETUP"
+                self.frame = 0
+                self.ftimer = 0
+
+            return  # 다른 동작 차단
+
+        if self.state == "GETUP":
+            self.ftimer += 1
+            if self.ftimer >= 6:
+                self.ftimer = 0
+                self.frame += 1
+
+                if self.frame >= len(self.getup_frames):
+                    self.state = "IDLE"
+                    self.frame = 0
+                    self.is_hit = False
+
+            return  # 다른 동작 차단
+
+
+        # ===== HIT 상태 처리 =====
+        if getattr(self, "is_hit", False):
+            self.hit_timer -= 1
+            self.x += self.vx  # 넉백 적용
+
+            if self.hit_timer <= 0:
+                self.is_hit = False
+                self.vx = 0
+                self.state = "IDLE"
+                self.frame = 0
+
+            return  # 다른 상태 로직 막기
 
         self.x += self.vx
 
@@ -150,6 +209,8 @@ class Character:
                           "CROUCH_PUNCH", "CROUCH_KICK"):
 
             if self.frame >= len(frames):
+
+                self.has_hit = False
 
                 # CROUCH 유지 (마지막 프레임 고정)
                 if self.state == "CROUCH":
@@ -197,6 +258,7 @@ class Character:
 
         return self.idle_frames
 
+    # ============================================================
     def draw(self):
         frames = self.get_current_frames()
         if not frames:
@@ -256,10 +318,6 @@ class Character:
         bottom = self.y - (h // 2)
         top = self.y + (h // 2)
 
-        # ============================
-        # 상태별 높이 및 위치 수정
-        # ============================
-
         if self.state == "CROUCH":
             top -= 70
             left += 10
@@ -271,6 +329,8 @@ class Character:
 
         elif self.state in ("JUMP"):
             bottom += 20
+
+
 
         return (left, bottom, right, top)
 
@@ -297,18 +357,10 @@ class Character:
         w = fw * 2
         h = fh * 2
 
-        # =========================================
-        # 기본 박스 (hurtbox 동일 방식: sprite 기준)
-        # =========================================
         left = self.x - (w // 2)
         right = self.x + (w // 2)
         bottom = self.y - (h // 2)
         top = self.y + (h // 2)
-
-        # =========================================
-        # 상태별 공격 판정 수정
-        # (여기서 left/right/top/bottom 직접 조정)
-        # =========================================
 
         if self.state == "PUNCH":
             left += 40
@@ -390,6 +442,4 @@ class Character:
         self.frame = 0
         self.ftimer = 0
         self.is_hit = False
-
-
 
