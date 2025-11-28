@@ -1,5 +1,3 @@
-character.py
-
 
 from pico2d import *
 
