@@ -167,6 +167,54 @@ class FightScreen:
         # 전체 체력바
         self.font_sheet.clip_draw(13, 209, 327, 15, center_x, bar_y, 800, 50)
 
+        # P1 체력바 (노란색) - 왼쪽 절반
+        if self.p1_hp > 0:
+            # 체력 비율 계산
+            hp_ratio = self.p1_hp / self.hp_max
+
+            # 왼쪽 절반 원본 크기: 327 / 2 = 163.5
+            half_clip = 327 // 2
+            clip_width = int(half_clip * hp_ratio)
+
+            # 실제 그릴 크기: 800 / 2 = 400
+            half_draw = 400
+            draw_width = int(half_draw * hp_ratio)
+
+            # P1은 스프라이트의 왼쪽부터 clip (왼쪽부터 줄어듦)
+            clip_x = 13 + (half_clip - clip_width)
+
+            # 그릴 위치: 중앙에서 왼쪽으로, 체력이 줄면 오른쪽으로 당겨짐
+            draw_x = center_x - draw_width // 2
+
+            self.font_sheet.clip_draw(
+                clip_x, 194, clip_width, 15,
+                draw_x, bar_y,
+                draw_width, 50
+            )
+
+        # P2 체력바 (노란색) - 오른쪽 절반
+        if self.p2_hp > 0:
+            # 체력 비율 계산
+            hp_ratio = self.p2_hp / self.hp_max
+
+            half_clip = 327 // 2
+            clip_width = int(half_clip * hp_ratio)
+
+            half_draw = 400
+            draw_width = int(half_draw * hp_ratio)
+
+            # P2는 스프라이트의 오른쪽부터 clip (오른쪽부터 줄어듦)
+            clip_x = 13 + half_clip
+
+            # 그릴 위치: 중앙에서 오른쪽으로, 체력이 줄면 왼쪽으로 당겨짐
+            draw_x = center_x + draw_width // 2
+
+            self.font_sheet.clip_draw(
+                clip_x, 194, clip_width, 15,
+                draw_x, bar_y,
+                draw_width, 50
+            )
+
         if self.show_fight:
             self.fight_img.draw(600, 400, 700, 350)  # 중앙에 크게 표시
             update_canvas()
