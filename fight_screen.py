@@ -167,6 +167,11 @@ class FightScreen:
         # 전체 체력바
         self.font_sheet.clip_draw(13, 209, 327, 15, center_x, bar_y, 800, 50)
 
+        if self.show_fight:
+            self.fight_img.draw(600, 400, 700, 350)  # 중앙에 크게 표시
+            update_canvas()
+            return
+
         update_canvas()
 
     # =========================================================
