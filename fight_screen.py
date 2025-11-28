@@ -161,6 +161,12 @@ class FightScreen:
         self.p1.debug_draw()
         self.p2.debug_draw()
 
+        bar_y = 700
+        center_x = 600  # 화면 중앙
+
+        # 전체 체력바
+        self.font_sheet.clip_draw(13, 209, 327, 15, center_x, bar_y, 800, 50)
+
         update_canvas()
 
     # =========================================================
