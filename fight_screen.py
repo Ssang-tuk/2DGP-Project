@@ -172,6 +172,11 @@ class FightScreen:
             update_canvas()
             return
 
+        if self.show_ko:
+            self.ko_img.draw(600, 400, 700, 250)  # 중앙 표시
+            update_canvas()
+            return  # KO 상태에서는 화면 갱신만 하고 종료
+
         update_canvas()
 
     # =========================================================
