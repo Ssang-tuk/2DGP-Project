@@ -233,4 +233,4 @@ class FightScreen:
             self.handle_events()
             self.update()
             self.draw()
-            delay(0.03)
+            delay(0.02)
