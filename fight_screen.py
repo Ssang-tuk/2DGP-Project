@@ -54,34 +54,35 @@ class FightScreen:
                 # ------------------------------
                 #   P1 입력 (WASD + 4,5)
                 # ------------------------------
-                if e.key == SDLK_d:
-                    self.p1.handle_action("MOVE_FORWARD")
-                elif e.key == SDLK_a:
-                    self.p1.handle_action("MOVE_BACKWARD")
-                elif e.key == SDLK_w:
-                    self.p1.handle_action("JUMP")
-                elif e.key == SDLK_s:
-                    self.p1.handle_action("CROUCH")
-                elif e.key == SDLK_4:
-                    self.p1.handle_action("PUNCH")
-                elif e.key == SDLK_5:
-                    self.p1.handle_action("KICK")
+                if not p1_locked:
+                    if e.key == SDLK_d:
+                        self.p1.handle_action("MOVE_FORWARD")
+                    elif e.key == SDLK_a:
+                        self.p1.handle_action("MOVE_BACKWARD")
+                    elif e.key == SDLK_w:
+                        self.p1.handle_action("JUMP")
+                    elif e.key == SDLK_s:
+                        self.p1.handle_action("CROUCH")
+                    elif e.key == SDLK_4:
+                        self.p1.handle_action("PUNCH")
+                    elif e.key == SDLK_5:
+                        self.p1.handle_action("KICK")
 
 
-                #   P2 입력 (화살표 + , .)
+                if not p2_locked:
+                    if e.key == SDLK_LEFT:
+                        self.p2.handle_action("MOVE_FORWARD")
+                    elif e.key == SDLK_RIGHT:
+                        self.p2.handle_action("MOVE_BACKWARD")
+                    elif e.key == SDLK_UP:
+                        self.p2.handle_action("JUMP")
+                    elif e.key == SDLK_DOWN:
+                        self.p2.handle_action("CROUCH")
+                    elif e.key == ord(','):
+                        self.p2.handle_action("PUNCH")
+                    elif e.key == ord('.'):
+                        self.p2.handle_action("KICK")
 
-                elif e.key == SDLK_LEFT:
-                    self.p2.handle_action("MOVE_FORWARD")
-                elif e.key == SDLK_RIGHT:
-                    self.p2.handle_action("MOVE_BACKWARD")
-                elif e.key == SDLK_UP:
-                    self.p2.handle_action("JUMP")
-                elif e.key == SDLK_DOWN:
-                    self.p2.handle_action("CROUCH")
-                elif e.key == ord(','):
-                    self.p2.handle_action("PUNCH")
-                elif e.key == ord('.'):
-                    self.p2.handle_action("KICK")
 
             # -------- KEYUP --------
             elif e.type == SDL_KEYUP:
@@ -158,8 +159,8 @@ class FightScreen:
 
         self.p1.draw()
         self.p2.draw()
-        self.p1.debug_draw()
-        self.p2.debug_draw()
+        #self.p1.debug_draw()
+        #self.p2.debug_draw()
 
         bar_y = 700
         center_x = 600  # 화면 중앙
